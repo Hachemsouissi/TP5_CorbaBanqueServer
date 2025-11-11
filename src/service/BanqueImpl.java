@@ -21,6 +21,8 @@ public class BanqueImpl extends IBanqueRemotePOA  implements IBanqueRemoteOperat
         for (Compte cpte : comptes) {
             if (cpte.code == code) {
                 cpte.solde+=mt;
+                System.out.println("Versement de " + mt + " DT effectué sur le compte " + code +
+                        ". Nouveau solde : " + cpte.solde);
                 return;
             }
                 System.out.println("code invalide");
@@ -33,10 +35,13 @@ public class BanqueImpl extends IBanqueRemotePOA  implements IBanqueRemoteOperat
     public void retirer(float mt, int code) {
         for (Compte cpte : comptes) {
             if (cpte.code == code) {
-                cpte.solde-=mt;
-            }else {
-                System.out.println("code invalide");
+                cpte.solde -= mt;
+                System.out.println("Retirement de " + mt + " DT effectué sur le compte " + code +
+                        ". Nouveau solde : " + cpte.solde);
+                return;
             }
+                System.out.println("code invalide");
+
         }
 
     }
@@ -45,6 +50,7 @@ public class BanqueImpl extends IBanqueRemotePOA  implements IBanqueRemoteOperat
     public Compte getCompte(int code) {
         for (Compte cpte : comptes) {
             if (cpte.code == code) {
+                System.out.println("compte creer avec succes");
                 return cpte;
             }
             System.out.println("code invalide");
@@ -60,6 +66,8 @@ public class BanqueImpl extends IBanqueRemotePOA  implements IBanqueRemoteOperat
     @Override
     public double conversion(float mt) {
         double taux=3.0;
-        return mt*taux;
+        double resultat=mt*taux;
+        System.out.println("Conversion demandée : " + mt + "€ → " + resultat + " DT");
+        return resultat;
     }
 }
