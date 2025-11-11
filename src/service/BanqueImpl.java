@@ -21,9 +21,10 @@ public class BanqueImpl extends IBanqueRemotePOA  implements IBanqueRemoteOperat
         for (Compte cpte : comptes) {
             if (cpte.code == code) {
                 cpte.solde+=mt;
-            }else {
-                System.out.println("code invalide");
+                return;
             }
+                System.out.println("code invalide");
+
         }
 
     }
